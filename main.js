@@ -17,6 +17,7 @@ var fetch = function (query) {
 var books = [];
 
 function addBooks(data) {
+  books = [];
   for (var i = 0; i < data.items.length; i++) {
     var booksObj = {};
     booksObj.title = data.items[i].volumeInfo.title;
@@ -64,18 +65,16 @@ var renderBooks = function () {
     });
     $('.books').append(newHtml);
   }
-  console.log('getting result', newHtml);
+
 };
 
-
 $(document).ready(function () {
+
   $('.search').on('click', function () {
+    $('.books').empty();
     var search = $('#search-query').val();
-
     fetch(search);
-    console.log('getting books...', books);
   });
-
 
 });
 
